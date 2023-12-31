@@ -1,41 +1,10 @@
-# Website
+# Info
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Built using [Docusaurus](https://docusaurus.io/) and [Redocusaurus](https://github.com/rohit-gohri/redocusaurus)
 
-### Installation
+The OpenApi config is located in `/openapi/` the rest of it is based on [Docusaurus](https://docusaurus.io/docs/next/installation#project-structure)
 
-```
-$ yarn
-```
+### TODO:
 
-### Local Development
-
-```
-$ yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+- Document post request for `/include/randomblazon.php`
+- Document post request for `/include/drawshield.php` as well as [blazonfile.txt](https://github.com/drawshield/Drawshield-Code/wiki/The-DrawShield-API#blazonfile) which can be included in the request
