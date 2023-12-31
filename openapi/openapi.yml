@@ -5,6 +5,7 @@ info:
   title: Unofficial Drawshield API docs
   version: "1.0"
   description: |
+    # About
     **Unofficial Drawshield API docs**
     Built by [Flammableassassin](https://github.com/flamableassassin)
 
@@ -14,23 +15,33 @@ info:
     - Discord bot: https://github.com/flamableassassin/drawshieldbot - [Invite](https://discord.com/api/oauth2/authorize?client_id=1152390089628991578&permissions=0&scope=applications.commands%20bot)
     - Cloudflare worker caching for self hosted Drawshield - https://github.com/flamableassassin/Drawshield-Code
 
-# tags:
-#   - name: General
-#     x-displayName: Image Generation
-#   - name: image_gen
-#     x-displayName: Image Generation Models
+tags:
+  - name: drawshield-code
+    x-displayName: DrawShield Code
+    description: The open source part of the website on `/include` [Github](https://github.com/drawshield/Drawshield-Code)
+    externalDocs:
+      url: https://github.com/drawshield/Drawshield-Code/wiki
+  - name: api
+    x-displayName: Official API
+    description: The api part of the website on `/api`
+    externalDocs:
+      url: https://drawshield.net/resources/reference-api.html
+  - name: other
+    x-displayName: Other
+    description: Other parts of the website which could be useful
 
-# x-tagGroups:
-#   - name: General
-#     tags:
-#       - img
-#   - name: Models
-#     tags:
-#       - image_gen
+x-tagGroups:
+  - name: General
+    tags:
+      - drawshield-code
+      - api
+      - other
 
 paths:
   /include/drawshield.php:
     get:
+      tags:
+        - drawshield-code
       summary: Shield Generator
       description: The endpoint for producing shields
       externalDocs:
@@ -133,6 +144,8 @@ paths:
   /include/randomblazon.php:
     get:
       summary: Generate a random blazon
+      tags:
+        - drawshield-code
       description: |
         Generate a random blazon depending on the parameters provided
 
@@ -392,6 +405,8 @@ paths:
 
   /api/define/{term}:
     get:
+      tags:
+        - api
       externalDocs:
         url: https://drawshield.net/resources/reference-api.html#:~:text=Getting%20a%20Dictionary%20Definition%20of%20a%20Term
         description: Drawshield official docs
@@ -450,29 +465,10 @@ paths:
                         enum:
                           - Term not found
 
-  /gallery/getvotes.php:
-    get:
-      summary: Vote count for gallery item
-      description: Returns the number of votes (likes) an item in the gallery has. **Note this was found via reverse engineering and there aren't any official docs**
-      parameters:
-        - name: refnum
-          in: query
-          required: true
-          schema:
-            type: integer
-            format: item id
-      responses:
-        200:
-          description: The number of votes (likes)
-          content:
-            text/plain:
-              example: 12
-              schema:
-                type: integer
-                description: The number of votes (likes)
-
   /api/gallery/{query}:
     get:
+      tags:
+        - api
       summary: Searches the gallery for a query
       description: |
         Searches the gallery for a query of either the item id or blazon.
@@ -525,6 +521,8 @@ paths:
 
   /api/challenge/{source}:
     get:
+      tags:
+        - api
       summary: Fetch a random challenge image
       description: |
         Returns a random challenge image for the user to try recreate.
@@ -562,3 +560,26 @@ paths:
               schema:
                 type: string
                 format: URI
+
+  /gallery/getvotes.php:
+    get:
+      tags:
+        - other
+      summary: Vote count for gallery item
+      description: Returns the number of votes (likes) an item in the gallery has. **Note this was found via reverse engineering and there aren't any official docs**
+      parameters:
+        - name: refnum
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: item id
+      responses:
+        200:
+          description: The number of votes (likes)
+          content:
+            text/plain:
+              example: 12
+              schema:
+                type: integer
+                description: The number of votes (likes)
