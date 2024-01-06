@@ -610,8 +610,7 @@ paths:
         200:
           description: The number of votes (likes)
           content:
-            text/hml:
-              example: 12
+            text/html:
               schema:
                 oneOf:
                   - type: string
