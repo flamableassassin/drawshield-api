@@ -36,15 +36,15 @@ tags:
     description: The api part of the website on `/api`
     externalDocs:
       url: https://drawshield.net/resources/reference-api.html
-  - name: other
-    x-displayName: Other
-    description: Other parts of the website which could be useful
+  - name: gallery
+    x-displayName: Gallery
+    description: Endpoints which are used apart of the gallery
 x-tagGroups:
   - name: General
     tags:
       - drawshield-code
       - api
-      - other
+      - gallery
 paths:
   /include/drawshield.php:
     get:
@@ -726,7 +726,7 @@ paths:
   /gallery/getvotes.php:
     get:
       tags:
-        - other
+        - gallery
       summary: Vote count for gallery item
       description: >-
         Returns the number of votes (likes) an item in the gallery has. **Note
@@ -748,6 +748,41 @@ paths:
               schema:
                 type: integer
                 description: The number of votes (likes)
+  /gallery/comments.php:
+    get:
+      tags:
+        - gallery
+      summary: Comments gallery item
+      description: >-
+        Returns the comments for a given item in the gallery. **Note this was
+        found via reverse engineering and there aren't any official docs**
+      parameters:
+        - name: refnum
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: item id
+      responses:
+        '200':
+          description: The number of votes (likes)
+          content:
+            text/hml:
+              example: 12
+              schema:
+                oneOf:
+                  - type: string
+                    description: The response with comments
+                  - type: string
+                    description: No reference number included
+                    enum:
+                      - <p>No reference number</p>
+                  - type: string
+                    description: No comments found
+                    enum:
+                      - |
+                        <div id="comments">
+                        </div>
 components:
   schemas:
     blazon:
