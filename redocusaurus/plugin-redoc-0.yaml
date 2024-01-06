@@ -711,10 +711,18 @@ paths:
           description: The link to the image
           content:
             application/json:
-              example: http://wappenwiki.org/images/2/20/Croatia_1527.svg
               schema:
-                type: string
-                format: URI
+                oneOf:
+                  - type: object
+                    properties:
+                      error:
+                        description: The response for an invalid source
+                        type: string
+                        example: no targets found
+                  - type: string
+                    format: URI
+                    example: http://wappenwiki.org/images/2/20/Croatia_1527.svg
+                    description: The response from a valid source
   /gallery/getvotes.php:
     get:
       tags:
