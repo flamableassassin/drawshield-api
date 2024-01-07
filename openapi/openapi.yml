@@ -576,12 +576,8 @@ paths:
       summary: Vote count for gallery item
       description: Returns the number of votes (likes) an item in the gallery has. **Note this was found via reverse engineering and there aren't any official docs**
       parameters:
-        - name: refnum
-          in: query
-          required: true
-          schema:
-            type: integer
-            format: item id
+        - $ref: "./components/parameters.yml#/refnum"
+
       responses:
         200:
           description: The number of votes (likes)
@@ -598,14 +594,9 @@ paths:
         - gallery
       summary: Comments gallery item
       description: Returns the comments for a given item in the gallery. **Note this was found via reverse engineering and there aren't any official docs**
-      # TODO: Move this to reference as its shared between getvotes and this
       parameters:
-        - name: refnum
-          in: query
-          required: true
-          schema:
-            type: integer
-            format: item id
+        - $ref: "./components/parameters.yml#/refnum"
+
       responses:
         200:
           description: The number of votes (likes)
