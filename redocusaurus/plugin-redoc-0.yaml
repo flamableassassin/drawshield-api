@@ -733,12 +733,7 @@ paths:
         this was found via reverse engineering and there aren't any official
         docs**
       parameters:
-        - name: refnum
-          in: query
-          required: true
-          schema:
-            type: integer
-            format: item id
+        - $ref: '#/components/parameters/refnum'
       responses:
         '200':
           description: The number of votes (likes)
@@ -747,7 +742,7 @@ paths:
               example: 12
               schema:
                 type: integer
-                description: The number of votes (likes)
+                description: The number of votes (likes). `0` by default
   /gallery/comments.php:
     get:
       tags:
@@ -757,12 +752,7 @@ paths:
         Returns the comments for a given item in the gallery. **Note this was
         found via reverse engineering and there aren't any official docs**
       parameters:
-        - name: refnum
-          in: query
-          required: true
-          schema:
-            type: integer
-            format: item id
+        - $ref: '#/components/parameters/refnum'
       responses:
         '200':
           description: The number of votes (likes)
@@ -984,3 +974,10 @@ components:
                     content:
                       description: The message text
                       type: string
+  parameters:
+    refnum:
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: item id
