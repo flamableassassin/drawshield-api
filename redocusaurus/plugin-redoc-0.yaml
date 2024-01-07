@@ -1,4 +1,4 @@
-openapi: 3.0.2
+openapi: 3.1.0
 servers:
   - url: https://drawshield.net
 info:
@@ -845,7 +845,7 @@ components:
         - png
         - json
     aspectratio:
-      type: integer
+      type: number
       default: 0.5
     printable:
       default: false
