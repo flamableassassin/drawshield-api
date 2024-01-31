@@ -28,6 +28,9 @@ jobs:
         run: npm run-scrip build
 
   auto-merge-dependabot:
+    permissions: 
+      pull-requests:
+        write
     name: Auto merge dependabot pull requests
     needs: [test-deploy]
     runs-on: ubuntu-latest
