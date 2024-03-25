@@ -8,9 +8,6 @@ on:
     # Review gh actions docs if you want to further define triggers, paths, etc
     # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
-permissions:
-  pull-requests: write
-
 jobs:
   test-deploy:
     name: Test deployment
@@ -26,24 +23,3 @@ jobs:
         run: npm ci
       - name: Test build website
         run: npm run-scrip build
-
-  auto-merge-dependabot:
-    permissions: 
-      pull-requests:
-        write
-    name: Auto merge dependabot pull requests
-    needs: [test-deploy]
-    runs-on: ubuntu-latest
-    if: github.actor == 'dependabot[bot]'
-    steps:
-      # - name: Dependabot metadata
-      #   id: metadata
-      #   uses: dependabot/fetch-metadata@v1
-      #   with:
-      #     github-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Enable auto-merge for Dependabot PRs
-        # if: contains(steps.metadata.outputs.dependency-names, 'my-dependency') && steps.metadata.outputs.update-type == 'version-update:semver-patch'
-        run: gh pr merge --auto --merge "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
