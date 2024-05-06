@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdrawshield_api=self.webpackChunkdrawshield_api||[]).push([[980],{79365:e=>{e.exports=JSON.parse('{"name":"docusaurus-plugin-content-pages","id":"default"}')}}]);
